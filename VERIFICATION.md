@@ -13,3 +13,5 @@ The installation and source ZIPs passed independent Python zipfile CRC checks. G
 This version was not run inside Obsidian here. Follow docs/en/TESTING.md or docs/ru/TESTING.md for native writes, Dataview refresh, links, theme/layout and touch checks. GitHub Actions were not run remotely and no repository/release was published.
 
 Все 134 автоматических теста пройдены. Выпускается один пакет, английский по умолчанию; русский включается свойством language. Отдельный русский ZIP больше не создаётся. Проверки с настоящим Obsidian и запуск workflow на GitHub остаются для приёмки; чек-листы включены.
+
+Installation packaging update: exactly 10 files, including linked English/Russian installation READMEs. BUILD.json and TESTING.md are excluded from the install ZIP; source acceptance checklists remain in docs/, and the builder writes metadata separately to dist/BUILD.json.

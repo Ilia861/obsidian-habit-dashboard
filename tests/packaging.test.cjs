@@ -6,12 +6,15 @@ function entries(language){const b=read('dist/habit-dashboard-v'+version+'.zip')
 test('ZIP CRC matches the standard reference vector',()=>{a.equal(crc32(Buffer.from('123456789')),0xcbf43926);});
 test('single English-default ZIP contains both Help languages, switching instructions and 4 demos',()=>{
  for(const language of ['en']){
-  const files=entries(language);a.equal(files.size,11);a.ok(files.has('.obsidian/snippets/habit-dashboard.css'));a.ok(files.has('Habit Dashboard/Help.ru.md'));a.ok(files.has('Habit Dashboard/Help.en.md'));
+  const files=entries(language);a.equal(files.size,10);a.ok(files.has('.obsidian/snippets/habit-dashboard.css'));a.ok(files.has('Habit Dashboard/Help.ru.md'));a.ok(files.has('Habit Dashboard/Help.en.md'));
   a.match(files.get('Habit Dashboard/Dashboard.md').toString(),/^---\nlanguage: en\n/);
   a.match(files.get('Habit Dashboard/Help.en.md').toString(),/^# Help[^\n]+\n\n## Change language\n\n[^\n]+language: ru/);
   a.match(files.get('Habit Dashboard/Help.ru.md').toString(),/^# Помощь[^\n]+\n\n## Смена языка\n\n[^\n]+language: en/);
   for(const lang of ['ru','en']){const help=files.get('Habit Dashboard/Help.'+lang+'.md').toString();a.match(help,/habit_name/);a.match(help,/habit_id/);a.match(help,/Чтение.md/);}
   a.equal(files.has('Habit Dashboard/Help.md'),false);
+  a.equal(files.has('BUILD.json'),false);a.equal(files.has('TESTING.md'),false);
+  a.match(files.get('README.md').toString(),/\[Русская инструкция\]\(README.ru.md\)/);
+  a.match(files.get('README.ru.md').toString(),/\[English instructions\]\(README.md\)/);
   a.deepEqual([...files.keys()].filter(p=>/^Habit Dashboard\/Help.*\.md$/.test(p)).sort(),['Habit Dashboard/Help.en.md','Habit Dashboard/Help.ru.md']);
   const habits=[...files].filter(([p])=>p.includes('/'+(language==='ru'?'Привычки':'Habits')+'/'));a.equal(habits.length,4);a.equal(habits.filter(([,b])=>b.toString().includes('habit_type: boolean')).length,3);
   for(const [filename,data]of files){a.equal(filename.startsWith('/'),false);a.equal(filename.split('/').includes('..'),false);a.deepEqual(data,read('dist/'+language+'/'+filename));if(filename.endsWith('.md'))a.doesNotMatch(data.toString(),/\{\{\w+\}\}/);}
@@ -19,7 +22,7 @@ test('single English-default ZIP contains both Help languages, switching instruc
 });
 test('release and legacy Russian fixture embed the same logic and catalogs',()=>{
  const ru=read('dist/ru/Habit Dashboard/Дашборд.md').toString().split('```dataviewjs\n')[1].split('\n```')[0],en=read('dist/en/Habit Dashboard/Dashboard.md').toString().split('```dataviewjs\n')[1].split('\n```')[0];
- a.equal(ru.split('\n').slice(1).join('\n'),en.split('\n').slice(1).join('\n'));a.equal(JSON.parse(read('dist/ru/BUILD.json')).sharedSourceSha256,JSON.parse(read('dist/en/BUILD.json')).sharedSourceSha256);
+ a.equal(ru.split('\n').slice(1).join('\n'),en.split('\n').slice(1).join('\n'));a.equal(JSON.parse(read('dist/BUILD.json')).version,version);
 });
 test('demo journal data is language-independent and existing Russian demo data is unchanged',()=>{
  const canonical=JSON.parse(read('examples/habits.json'));

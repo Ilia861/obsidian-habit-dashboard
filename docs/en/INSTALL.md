@@ -1,5 +1,7 @@
 # Obsidian Habit Dashboard {{version}} — English by default
 
+[Русская инструкция](README.ru.md)
+
 1. Extract the contents of this ZIP into your Obsidian Vault, including the hidden `.obsidian` folder.
 2. Enable the Dataview community plugin and **Enable JavaScript Queries** in its settings. No other plugin is required; runtime use is offline.
 3. Enable `habit-dashboard` under Settings → Appearance → CSS snippets. If your Vault uses another settings-directory name, copy the CSS into that directory's `snippets` folder.
@@ -18,6 +20,6 @@ Back up your Vault. Replace your existing dashboard note with this version's das
 
 **Do not overwrite your personal habit folder with demo files.** There is one package, with English defaults and both interface languages included. For an existing Vault, change the language property and preserve its existing folder setting instead.
 
-For source, automated tests and build instructions, use the project repository/source ZIP. `TESTING.md` lists checks that need real Obsidian. `BUILD.json` records the version and common-source hash.
+For source, automated tests and build instructions, use the project repository/source ZIP. Real Obsidian acceptance checklists are in `docs/en/TESTING.md` and `docs/ru/TESTING.md` in the sources; build metadata stays outside the installation package.
 
 The old duplicate `Habit Dashboard/Help.md` is no longer used; you may delete it after checking any personal links to it. Keep `Help.en.md` and `Help.ru.md`.

@@ -20,15 +20,13 @@ function build({testFixtures=false}={}){
   const note='---\nlanguage: '+language+'\ndate_format: "'+(language==='ru'?'DD:MM:YYYY':'YYYY-MM-DD')+'"\nhabits_folder: "'+defaults.habitsFolder+'"\ncssclasses:\n  - habit-dashboard-page\n---\n\n# Habit Dashboard\n\n```dataviewjs\n'+code+'\n```\n';
   const files=new Map([[folder+'/'+defaults.dashboardName,note],['.obsidian/snippets/habit-dashboard.css',read('src/styles.css')]]);
   for(const lang of ['ru','en'])files.set(folder+'/Help.'+lang+'.md',templates(read('docs/'+lang+'/Help.md'),vars));
-  files.set('README.md',templates(read('docs/'+language+'/INSTALL.md'),vars));
-  files.set('TESTING.md',templates(read('docs/'+language+'/TESTING.md'),vars));
+  files.set('README.md',templates(read('docs/en/INSTALL.md'),vars));
+  files.set('README.ru.md',templates(read('docs/ru/INSTALL.md'),vars));
   for(const habit of habitData){
    const meta='---\nhabit_id: '+habit.habit_id+'\nhabit_name: '+JSON.stringify(habit.names[language])+'\nhabit_type: '+habit.habit_type+'\nstart_date: '+habit.start_date+'\norder: '+habit.order+'\n'+(habit.habit_type==='number'?'unit: '+JSON.stringify(habit.units[language])+'\n':'')+'---\n\n## '+catalogs[language].journalHeading+'\n\n';
    const records=habit.records.map(r=>'- [date:: '+r.date+'] [value:: '+String(r.value)+']').join('\n')+'\n';
    files.set(folder+'/'+defaults.habitsFolder+'/'+habit.names[language]+'.md',meta+records);
   }
-  const manifest={version:pkg.version,language,sharedSourceSha256:crypto.createHash('sha256').update(Object.values(sources).join('\n')).digest('hex')};
-  files.set('BUILD.json',JSON.stringify(manifest,null,2)+'\n');
   // Remove stale generated files only inside this package's own dist subdirectory.
   for(const file of walk(dest))if(!files.has(path.relative(dest,file).split(path.sep).join('/')))fs.unlinkSync(file);
   for(const [file,content]of files){const target=path.join(dest,file);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,content);}
@@ -38,6 +36,8 @@ function build({testFixtures=false}={}){
   checksums.push(crypto.createHash('sha256').update(archive).digest('hex')+'  '+filename);
   console.log(filename+': '+files.size+' files');
  }
+ const manifest={version:pkg.version,language:'en',sharedSourceSha256:crypto.createHash('sha256').update(Object.values(sources).join('\n')).digest('hex')};
+ fs.writeFileSync(path.join(root,'dist','BUILD.json'),JSON.stringify(manifest,null,2)+'\n');
  fs.writeFileSync(path.join(root,'dist','SHA256SUMS.txt'),checksums.join('\n')+'\n');
  fs.writeFileSync(path.join(root,'dist','RELEASE.md'),templates(read('docs/en/RELEASE.md'),{version:pkg.version}));
 }

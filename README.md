@@ -44,7 +44,7 @@ npm test
 npm run build
 ```
 
-`npm test` validates translation keys/placeholders, builds the unified package plus a legacy Russian compatibility fixture, and runs regression/localization/package tests. `npm run build` builds only the English-default install package. `dist/` contains one install ZIP, SHA256 checksums, release notes and the extracted `en/` tree; tests additionally create `ru/` as an internal fixture, never a second release ZIP. `BUILD.json` records the shared-source hash. ZIP generation is deterministic and uses Node built-ins.
+`npm test` validates translation keys/placeholders, builds the unified package plus a legacy Russian compatibility fixture, and runs regression/localization/package tests. `npm run build` builds only the English-default install package. `dist/` contains one install ZIP, SHA256 checksums, release notes and the extracted `en/` tree; tests additionally create `ru/` as an internal fixture, never a second release ZIP. `dist/BUILD.json` (outside the install ZIP) records the shared-source hash. ZIP generation is deterministic and uses Node built-ins.
 
 ```text
 src/                 Shared calculations, editor, view, i18n and CSS
