@@ -1,0 +1,29 @@
+name: Test and build bilingual package
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Validate locales, build unified package, run all tests
+        run: npm test
+      - uses: actions/upload-artifact@v7.0.2
+        if: matrix.node == '24'
+        with:
+          name: habit-dashboard
+          path: |
+            dist/*.zip
+            dist/SHA256SUMS.txt
+          if-no-files-found: error
