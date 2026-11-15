@@ -1,0 +1,186 @@
+[
+  {
+    "habit_id": "exercise",
+    "habit_type": "boolean",
+    "start_date": "2026-11-01",
+    "order": 1,
+    "names": {
+      "ru": "Зарядка",
+      "en": "Exercise"
+    },
+    "units": {
+      "ru": "",
+      "en": ""
+    },
+    "records": [
+      {
+        "date": "2026-11-01",
+        "value": true
+      },
+      {
+        "date": "2026-11-02",
+        "value": false
+      },
+      {
+        "date": "2026-11-03",
+        "value": true
+      },
+      {
+        "date": "2026-11-06",
+        "value": true
+      },
+      {
+        "date": "2026-11-07",
+        "value": true
+      },
+      {
+        "date": "2026-11-08",
+        "value": true
+      }
+    ]
+  },
+  {
+    "habit_id": "meditation",
+    "habit_type": "boolean",
+    "start_date": "2026-11-01",
+    "order": 2,
+    "names": {
+      "ru": "Медитация",
+      "en": "Meditation"
+    },
+    "units": {
+      "ru": "",
+      "en": ""
+    },
+    "records": [
+      {
+        "date": "2026-11-01",
+        "value": true
+      },
+      {
+        "date": "2026-11-02",
+        "value": false
+      },
+      {
+        "date": "2026-11-03",
+        "value": true
+      },
+      {
+        "date": "2026-11-05",
+        "value": true
+      },
+      {
+        "date": "2026-11-06",
+        "value": false
+      },
+      {
+        "date": "2026-11-08",
+        "value": true
+      },
+      {
+        "date": "2026-11-09",
+        "value": true
+      },
+      {
+        "date": "2026-11-10",
+        "value": true
+      }
+    ]
+  },
+  {
+    "habit_id": "walking",
+    "habit_type": "boolean",
+    "start_date": "2026-11-01",
+    "order": 3,
+    "names": {
+      "ru": "Прогулка",
+      "en": "Walking"
+    },
+    "units": {
+      "ru": "",
+      "en": ""
+    },
+    "records": [
+      {
+        "date": "2026-11-01",
+        "value": true
+      },
+      {
+        "date": "2026-11-02",
+        "value": true
+      },
+      {
+        "date": "2026-11-03",
+        "value": false
+      },
+      {
+        "date": "2026-11-04",
+        "value": true
+      },
+      {
+        "date": "2026-11-06",
+        "value": true
+      },
+      {
+        "date": "2026-11-07",
+        "value": true
+      },
+      {
+        "date": "2026-11-08",
+        "value": false
+      },
+      {
+        "date": "2026-11-09",
+        "value": true
+      },
+      {
+        "date": "2026-11-10",
+        "value": true
+      }
+    ]
+  },
+  {
+    "habit_id": "reading",
+    "habit_type": "number",
+    "start_date": "2026-10-01",
+    "order": 10,
+    "names": {
+      "ru": "Чтение",
+      "en": "Reading"
+    },
+    "units": {
+      "ru": "страниц",
+      "en": "pages"
+    },
+    "records": [
+      {
+        "date": "2026-10-30",
+        "value": 10.0
+      },
+      {
+        "date": "2026-11-01",
+        "value": 15.0
+      },
+      {
+        "date": "2026-11-01",
+        "value": 20.0
+      },
+      {
+        "date": "2026-11-02",
+        "value": 0.0
+      },
+      {
+        "date": "2026-11-04",
+        "value": 12.5
+      },
+      {
+        "date": "2026-11-07",
+        "value": 30.0
+      },
+      {
+        "date": "2026-11-08",
+        "value": 20.0
+      }
+    ]
+  }
+]

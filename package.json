@@ -1,0 +1,14 @@
+{
+  "name": "obsidian-habit-dashboard",
+  "version": "1.4.1",
+  "private": true,
+  "description": "Offline Obsidian habit dashboard with shared Russian and English UI",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate:locales": "node scripts/validate-locales.cjs",
+    "build": "node scripts/build.cjs",
+    "test": "node scripts/build.cjs --test-fixtures && node scripts/test.cjs"
+  }
+}
